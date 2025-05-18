@@ -14,6 +14,7 @@ export async function getClasses() {
       limit: -1,
       fields: [
         "*",
+        // @ts-ignore Directus SDK types are not properly handling nested relations
         { location: ["*"] },
         { image: ["*"] },
         { students: ["*", { person: ["*"] }, { image: ["*"] }] },

@@ -565,10 +565,10 @@ export default function Home() {
         {/* Alumni Card */}
         <div className="bg-gray-900 rounded-lg overflow-hidden relative">
           {/* Current Student Image */}
-          {currentAlumni.student.image && !imageError ? (
+          {currentAlumni?.student.image && !imageError ? (
             <CMSImage
-              image={currentAlumni.student.image}
-              alt={currentAlumni.student.person.name}
+              image={currentAlumni?.student.image}
+              alt={currentAlumni?.student.person.name}
               className="w-full aspect-square object-cover relative z-10"
             />
           ) : (
@@ -590,9 +590,9 @@ export default function Home() {
 
           <div className="p-6 text-center">
             <h2 className="text-2xl font-bold mb-2">
-              {currentAlumni.student.person.name}
+              {currentAlumni?.student.person.name}
             </h2>
-            <p className="text-gray-400">{currentAlumni.student.major}</p>
+            <p className="text-gray-400">{currentAlumni?.student.major}</p>
           </div>
         </div>
 
@@ -629,9 +629,9 @@ export default function Home() {
               >
                 {feedback.correct ? "Correct!" : "Incorrect!"}
                 <div className="text-sm mt-1">
-                  {currentAlumni.student.person.name} was in{" "}
+                  {currentAlumni?.student.person.name} was in{" "}
                   <strong>
-                    {currentAlumni.class.season} {currentAlumni.class.year}
+                    {currentAlumni?.class.season} {currentAlumni?.class.year}
                   </strong>
                 </div>
               </div>
