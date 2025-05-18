@@ -1,13 +1,13 @@
-
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 
 interface NextButtonProps {
   onClick: () => void;
   isAnswerSubmitted: boolean;
+  disabled?: boolean;
 }
 
-const NextButton = ({ onClick, isAnswerSubmitted }: NextButtonProps) => {
+const NextButton = ({ onClick, isAnswerSubmitted, disabled }: NextButtonProps) => {
   if (!isAnswerSubmitted) return null;
   
   return (
@@ -15,8 +15,17 @@ const NextButton = ({ onClick, isAnswerSubmitted }: NextButtonProps) => {
       onClick={onClick}
       className="bg-cdtm-blue hover:bg-cdtm-light mt-4" 
       size="lg"
+      disabled={disabled}
     >
-      Next Alumnus <ArrowRight className="ml-2 h-4 w-4" />
+      {disabled ? (
+        <>
+          Loading next image... <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+        </>
+      ) : (
+        <>
+          Next Alumnus <ArrowRight className="ml-2 h-4 w-4" />
+        </>
+      )}
     </Button>
   );
 };
