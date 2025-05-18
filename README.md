@@ -2,7 +2,7 @@
 
 https://github.com/user-attachments/assets/34bf29af-d21a-45ad-b17e-c6c7ae8ff611
 
-How well do you know your CDTM? A fun game to test your knowledge of the CDTM. Vibe coded this project with [Cursor](https://cursor.com).
+How well do you know the CDTM students? A fun game to test your knowledge. Vibe coded this project with [Cursor](https://cursor.com).
 
 ## Running the Game Locally
 
