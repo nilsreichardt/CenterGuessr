@@ -6,21 +6,21 @@ How well do you know the CDTM students? A fun game to test your knowledge. Vibe 
 
 ## Running the Game Locally
 
-Follow these steps to run the website locally on your machine.
+Follow these steps to run the game locally on your machine.
 
 ### 1. Install Node.js
 
-If you don't already have Node.js installed, you'll need to do so. Node.js is a JavaScript runtime that allows you to execute JavaScript code directly on your machine, without the need for a browser. The web server of Next.js, which this website uses, is written in TypeScript, hence the need for Node.js.
+If you don't already have Node.js installed, you'll need to do so. Node.js is a JavaScript runtime that allows you to execute JavaScript code directly on your machine, without the need for a browser. The web server of Next.js, which this game uses, is written in TypeScript, hence the need for Node.js.
 
 You can download Node.js from the official website: https://nodejs.org/
 
 ### 2. Clone the Repository
 
-Clone the website's repository to your local machine. If you're unfamiliar with git or cloning repositories, there are many resources available online to guide you through the process.
+Clone the game's repository to your local machine. If you're unfamiliar with git or cloning repositories, there are many resources available online to guide you through the process.
 
 ### 3. Obtain an API Key for the CMS
 
-To interact with the website's Content Management System (CMS), you'll need an API key. Here's how to get one:
+To interact with the game's Content Management System (CMS), you'll need an API key. Here's how to get one:
 
 1. **Login to the CMS**: Visit https://cms.cdtm.com and log in using your CDTM Google account.
 
@@ -51,7 +51,7 @@ Run the following command from the root of the repository to install all require
 npm install
 ```
 
-### 6. Run the Website
+### 6. Run the Game
 
 In your terminal, navigate to the root directory of the cloned repository and run the following command:
 
@@ -59,13 +59,13 @@ In your terminal, navigate to the root directory of the cloned repository and ru
 npm run dev
 ```
 
-This command will start the website's development server.
+This command will start the game's development server.
 
-### 7. View the Website
+### 7. View the Game
 
-Finally, open your web browser and visit `localhost:3000` to view the website.
+Finally, open your web browser and visit `localhost:3000` to view the game.
 
-That's it! You've successfully set up and run the website on your local machine.
+That's it! You've successfully set up and run the game on your local machine.
 
 # Next steps
 
