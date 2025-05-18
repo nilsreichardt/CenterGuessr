@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getClasses } from "@/cms/data";
 import { NextResponse } from "next/server";
 

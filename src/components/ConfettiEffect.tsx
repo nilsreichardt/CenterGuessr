@@ -9,11 +9,17 @@ interface ConfettiEffectProps {
 const ConfettiEffect = ({ active, duration = 3000 }: ConfettiEffectProps) => {
   const [isActive, setIsActive] = useState(active);
   const [windowDimension, setWindowDimension] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {
+    // Set initial dimensions after mount
+    setWindowDimension({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     setIsActive(active);
 
     if (active) {
@@ -40,7 +46,7 @@ const ConfettiEffect = ({ active, duration = 3000 }: ConfettiEffectProps) => {
     };
   }, []);
 
-  if (!isActive) return null;
+  if (!isActive || windowDimension.width === 0) return null;
 
   return (
     <ReactConfetti

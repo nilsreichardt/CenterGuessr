@@ -17,58 +17,25 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return newArray;
 };
 
-const preloadImage = (url: string): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => resolve();
-    img.onerror = reject;
-    img.src = url;
-  });
-};
-
 const Index = () => {
   const [gameAlumni, setGameAlumni] = useState<Alumnus[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [correct, setCorrect] = useState(0);
-  const [total, setTotal] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [nextImageLoaded, setNextImageLoaded] = useState(false);
 
   // Initialize game
   useEffect(() => {
     startNewGame();
   }, []);
 
-  // Preload next image
-  useEffect(() => {
-    if (currentIndex < gameAlumni.length - 1) {
-      const nextAlumnus = gameAlumni[currentIndex + 1];
-      console.log("Starting to preload next image:", nextAlumnus.imageUrl);
-      setNextImageLoaded(false);
-      preloadImage(nextAlumnus.imageUrl)
-        .then(() => {
-          console.log("Next image loaded successfully");
-          setNextImageLoaded(true);
-        })
-        .catch((error) => {
-          console.error("Failed to preload next image:", error);
-          setNextImageLoaded(true); // Continue even if preload fails
-        });
-    }
-  }, [currentIndex, gameAlumni]);
-
   const startNewGame = () => {
     setGameAlumni(shuffleArray(alumni));
     setCurrentIndex(0);
-    setCorrect(0);
-    setTotal(0);
     setIsCorrect(null);
     setShowConfetti(false);
     setIsAnswerSubmitted(false);
-    setNextImageLoaded(false);
   };
 
   const handleSubmitGuess = (selectedClass: string) => {
@@ -76,10 +43,8 @@ const Index = () => {
     const isGuessCorrect = selectedClass === currentAlumnus.classId;
 
     setIsCorrect(isGuessCorrect);
-    setTotal((prev) => prev + 1);
 
     if (isGuessCorrect) {
-      setCorrect((prev) => prev + 1);
       setShowConfetti(true);
     }
 
@@ -88,19 +53,7 @@ const Index = () => {
 
   const handleNextAlumnus = () => {
     if (currentIndex < gameAlumni.length - 1) {
-      console.log("Next button clicked, nextImageLoaded:", nextImageLoaded);
       setIsLoading(true);
-      // Only proceed if the next image is loaded
-      if (nextImageLoaded) {
-        console.log("Proceeding to next alumnus");
-        setCurrentIndex((prev) => prev + 1);
-        setIsCorrect(null);
-        setShowConfetti(false);
-        setIsAnswerSubmitted(false);
-        setIsLoading(false);
-      } else {
-        console.log("Next image not loaded yet, waiting...");
-      }
     } else {
       // End of game
       startNewGame();
@@ -144,7 +97,6 @@ const Index = () => {
               <NextButton
                 onClick={handleNextAlumnus}
                 isAnswerSubmitted={isAnswerSubmitted}
-                disabled={!nextImageLoaded}
               />
             )}
           </div>

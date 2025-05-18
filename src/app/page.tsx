@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -60,7 +60,7 @@ function LoadingState() {
   );
 }
 
-export default function Home() {
+function HomeContent() {
   const [selectedClass, setSelectedClass] = useState<string>("");
   const [currentAlumni, setCurrentAlumni] = useState<AlumniData | null>(null);
   const [nextAlumni, setNextAlumni] = useState<AlumniData | null>(null);
@@ -660,5 +660,13 @@ export default function Home() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<LoadingState />}>
+      <HomeContent />
+    </Suspense>
   );
 }
