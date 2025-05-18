@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
 
@@ -50,7 +49,15 @@ const ConfettiEffect = ({ active, duration = 3000 }: ConfettiEffectProps) => {
       recycle={false}
       numberOfPieces={500}
       gravity={0.2}
-      colors={["#1E3A8A", "#3B82F6", "#60A5FA", "#93C5FD", "#F472B6", "#FB7185", "#FCD34D"]}
+      colors={[
+        "#1E3A8A",
+        "#3B82F6",
+        "#60A5FA",
+        "#93C5FD",
+        "#F472B6",
+        "#FB7185",
+        "#FCD34D",
+      ]}
     />
   );
 };

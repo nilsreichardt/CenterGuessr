@@ -1,7 +1,12 @@
-
 import { useState } from "react";
 import { ClassOption } from "../data/types";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
 interface ClassSelectorProps {
@@ -32,7 +37,7 @@ const ClassSelector = ({ classOptions, onSubmit }: ClassSelectorProps) => {
           ))}
         </SelectContent>
       </Select>
-      <Button 
+      <Button
         onClick={handleSubmit}
         disabled={!selectedClass}
         className="bg-cdtm-blue hover:bg-cdtm-light"

@@ -1,12 +1,12 @@
-import "server-only"
-import { createDirectus, readItems, rest, staticToken } from "@directus/sdk"
-import type { Class, Schema } from "./schema"
+import "server-only";
+import { createDirectus, readItems, rest, staticToken } from "@directus/sdk";
+import type { Class, Schema } from "./schema";
 
 const cms = createDirectus<Schema>(process.env.NEXT_PUBLIC_CMS_URL!)
   .with(staticToken(process.env.DIRECTUS_API_KEY!))
-  .with(rest())
+  .with(rest());
 
-export default cms
+export default cms;
 
 export async function getClasses() {
   const classes = await cms.request<Class[]>(
@@ -19,7 +19,7 @@ export async function getClasses() {
         { students: ["*", { person: ["*"] }, { image: ["*"] }] },
       ],
     }),
-  )
+  );
 
-  return classes
-} 
+  return classes;
+}

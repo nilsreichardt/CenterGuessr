@@ -1,4 +1,3 @@
-
 export interface Alumnus {
   id: string;
   name: string;

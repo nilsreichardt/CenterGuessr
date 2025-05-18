@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 
 interface ScoreCardProps {
@@ -18,8 +17,8 @@ const ScoreCard = ({ correct, total }: ScoreCardProps) => {
             <span className="text-green-600">{correct}</span> / {total}
           </p>
           <p className="text-sm text-gray-500">
-            {total > 0 
-              ? `${Math.round((correct / total) * 100)}% correct` 
+            {total > 0
+              ? `${Math.round((correct / total) * 100)}% correct`
               : "Start guessing!"}
           </p>
         </div>

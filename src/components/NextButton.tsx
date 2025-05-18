@@ -7,19 +7,24 @@ interface NextButtonProps {
   disabled?: boolean;
 }
 
-const NextButton = ({ onClick, isAnswerSubmitted, disabled }: NextButtonProps) => {
+const NextButton = ({
+  onClick,
+  isAnswerSubmitted,
+  disabled,
+}: NextButtonProps) => {
   if (!isAnswerSubmitted) return null;
-  
+
   return (
-    <Button 
+    <Button
       onClick={onClick}
-      className="bg-cdtm-blue hover:bg-cdtm-light mt-4" 
+      className="bg-cdtm-blue hover:bg-cdtm-light mt-4"
       size="lg"
       disabled={disabled}
     >
       {disabled ? (
         <>
-          Loading next image... <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+          Loading next image...{" "}
+          <Loader2 className="ml-2 h-4 w-4 animate-spin" />
         </>
       ) : (
         <>

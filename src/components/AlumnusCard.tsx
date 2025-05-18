@@ -32,7 +32,7 @@ const AlumnusCard = ({ alumnus, isLoading }: AlumnusCardProps) => {
             <img
               src={alumnus.imageUrl}
               alt={alumnus.name}
-              className={`object-cover w-full h-full ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`object-cover w-full h-full ${imageLoaded ? "opacity-100" : "opacity-0"}`}
               onLoad={() => setImageLoaded(true)}
             />
           </>

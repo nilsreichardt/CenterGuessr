@@ -1,4 +1,3 @@
-
 interface FeedbackMessageProps {
   isCorrect: boolean | null;
   correctClass: string | null;
@@ -8,7 +7,9 @@ const FeedbackMessage = ({ isCorrect, correctClass }: FeedbackMessageProps) => {
   if (isCorrect === null) return null;
 
   return (
-    <div className={`p-4 rounded-md text-center text-white font-medium my-4 ${isCorrect ? 'bg-green-500' : 'bg-red-500'}`}>
+    <div
+      className={`p-4 rounded-md text-center text-white font-medium my-4 ${isCorrect ? "bg-green-500" : "bg-red-500"}`}
+    >
       {isCorrect ? (
         <p>Great job! That's correct!</p>
       ) : (

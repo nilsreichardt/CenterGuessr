@@ -46,15 +46,15 @@ const Index = () => {
   useEffect(() => {
     if (currentIndex < gameAlumni.length - 1) {
       const nextAlumnus = gameAlumni[currentIndex + 1];
-      console.log('Starting to preload next image:', nextAlumnus.imageUrl);
+      console.log("Starting to preload next image:", nextAlumnus.imageUrl);
       setNextImageLoaded(false);
       preloadImage(nextAlumnus.imageUrl)
         .then(() => {
-          console.log('Next image loaded successfully');
+          console.log("Next image loaded successfully");
           setNextImageLoaded(true);
         })
         .catch((error) => {
-          console.error('Failed to preload next image:', error);
+          console.error("Failed to preload next image:", error);
           setNextImageLoaded(true); // Continue even if preload fails
         });
     }
@@ -74,32 +74,32 @@ const Index = () => {
   const handleSubmitGuess = (selectedClass: string) => {
     const currentAlumnus = gameAlumni[currentIndex];
     const isGuessCorrect = selectedClass === currentAlumnus.classId;
-    
+
     setIsCorrect(isGuessCorrect);
-    setTotal(prev => prev + 1);
-    
+    setTotal((prev) => prev + 1);
+
     if (isGuessCorrect) {
-      setCorrect(prev => prev + 1);
+      setCorrect((prev) => prev + 1);
       setShowConfetti(true);
     }
-    
+
     setIsAnswerSubmitted(true);
   };
 
   const handleNextAlumnus = () => {
     if (currentIndex < gameAlumni.length - 1) {
-      console.log('Next button clicked, nextImageLoaded:', nextImageLoaded);
+      console.log("Next button clicked, nextImageLoaded:", nextImageLoaded);
       setIsLoading(true);
       // Only proceed if the next image is loaded
       if (nextImageLoaded) {
-        console.log('Proceeding to next alumnus');
-        setCurrentIndex(prev => prev + 1);
+        console.log("Proceeding to next alumnus");
+        setCurrentIndex((prev) => prev + 1);
         setIsCorrect(null);
         setShowConfetti(false);
         setIsAnswerSubmitted(false);
         setIsLoading(false);
       } else {
-        console.log('Next image not loaded yet, waiting...');
+        console.log("Next image not loaded yet, waiting...");
       }
     } else {
       // End of game
@@ -108,38 +108,42 @@ const Index = () => {
   };
 
   const currentAlumnus = gameAlumni[currentIndex];
-  
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <ConfettiEffect active={showConfetti} />
-      
+
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-bold text-cdtm-blue text-center mb-8">
           CenterlingGuessr
         </h1>
-        
+
         <div className="flex flex-col items-center">
           {currentAlumnus && (
             <div className="max-w-md w-full mb-8">
               <AlumnusCard alumnus={currentAlumnus} isLoading={isLoading} />
             </div>
           )}
-          
+
           <div className="w-full max-w-md space-y-6">
-            <FeedbackMessage 
-              isCorrect={isCorrect} 
-              correctClass={currentAlumnus ? findClassLabel(currentAlumnus.classId, classOptions) : null} 
+            <FeedbackMessage
+              isCorrect={isCorrect}
+              correctClass={
+                currentAlumnus
+                  ? findClassLabel(currentAlumnus.classId, classOptions)
+                  : null
+              }
             />
-            
+
             {!isAnswerSubmitted ? (
-              <ClassSelector 
-                classOptions={classOptions} 
-                onSubmit={handleSubmitGuess} 
+              <ClassSelector
+                classOptions={classOptions}
+                onSubmit={handleSubmitGuess}
               />
             ) : (
-              <NextButton 
-                onClick={handleNextAlumnus} 
-                isAnswerSubmitted={isAnswerSubmitted} 
+              <NextButton
+                onClick={handleNextAlumnus}
+                isAnswerSubmitted={isAnswerSubmitted}
                 disabled={!nextImageLoaded}
               />
             )}
