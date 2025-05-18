@@ -4,10 +4,8 @@ import { alumni, classOptions } from "../data/alumni";
 import { Alumnus } from "../data/types";
 import AlumnusCard from "../components/AlumnusCard";
 import ClassSelector from "../components/ClassSelector";
-import ScoreCard from "../components/ScoreCard";
 import FeedbackMessage from "../components/FeedbackMessage";
 import ConfettiEffect from "../components/ConfettiEffect";
-import GameHeader from "../components/GameHeader";
 import NextButton from "../components/NextButton";
 import { findClassLabel } from "../utils/helpers";
 
@@ -77,35 +75,35 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <ConfettiEffect active={showConfetti} />
       
-      <GameHeader onReset={startNewGame} />
-      
       <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex flex-col items-center">
-            {currentAlumnus && <AlumnusCard alumnus={currentAlumnus} />}
-          </div>
-          
-          <div className="flex flex-col items-center">
-            <div className="w-full max-w-md space-y-6">
-              <ScoreCard correct={correct} total={total} />
-              
-              <FeedbackMessage 
-                isCorrect={isCorrect} 
-                correctClass={currentAlumnus ? findClassLabel(currentAlumnus.classId, classOptions) : null} 
-              />
-              
-              {!isAnswerSubmitted ? (
-                <ClassSelector 
-                  classOptions={classOptions} 
-                  onSubmit={handleSubmitGuess} 
-                />
-              ) : (
-                <NextButton 
-                  onClick={handleNextAlumnus} 
-                  isAnswerSubmitted={isAnswerSubmitted} 
-                />
-              )}
+        <h1 className="text-3xl sm:text-4xl font-bold text-cdtm-blue text-center mb-8">
+          CenterlingGuessr
+        </h1>
+        
+        <div className="flex flex-col items-center">
+          {currentAlumnus && (
+            <div className="max-w-md w-full mb-8">
+              <AlumnusCard alumnus={currentAlumnus} />
             </div>
+          )}
+          
+          <div className="w-full max-w-md space-y-6">
+            <FeedbackMessage 
+              isCorrect={isCorrect} 
+              correctClass={currentAlumnus ? findClassLabel(currentAlumnus.classId, classOptions) : null} 
+            />
+            
+            {!isAnswerSubmitted ? (
+              <ClassSelector 
+                classOptions={classOptions} 
+                onSubmit={handleSubmitGuess} 
+              />
+            ) : (
+              <NextButton 
+                onClick={handleNextAlumnus} 
+                isAnswerSubmitted={isAnswerSubmitted} 
+              />
+            )}
           </div>
         </div>
       </div>
