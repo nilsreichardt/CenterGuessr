@@ -9,7 +9,7 @@ const GameHeader = ({ onReset }: GameHeaderProps) => {
     <div className="w-full max-w-4xl mx-auto mb-8">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl sm:text-4xl font-bold text-cdtm-blue">
-          CenterlingGuessr
+          CenterGuessr
         </h1>
         <Button variant="outline" onClick={onReset}>
           New Game

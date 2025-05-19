@@ -1,4 +1,4 @@
-# CenterlingGuessor
+# CenterGuessr
 
 How well do you know the CDTM students? A fun game to test your knowledge. Vibe coded this project with [Cursor](https://cursor.com).
 

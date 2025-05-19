@@ -31,7 +31,7 @@ function LoadingState() {
     <div className="max-w-2xl w-full space-y-8">
       {/* Title and Filter Button */}
       <div className="flex items-center justify-between">
-        <h1 className="text-4xl font-bold">CenterlingGuessr</h1>
+        <h1 className="text-4xl font-bold">CenterGuessr</h1>
         <Button
           variant="outline"
           size="icon"
@@ -390,7 +390,7 @@ function HomeContent() {
         <div className="max-w-2xl w-full space-y-8">
           {/* Title and Filter Button */}
           <div className="flex items-center justify-between mb-4 gap-2">
-            <h1 className="text-3xl sm:text-4xl font-bold">CenterlingGuessr</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold">CenterGuessr</h1>
             <Button
               variant="outline"
               size="icon"
@@ -490,7 +490,7 @@ function HomeContent() {
       <div className="max-w-2xl w-full space-y-8">
         {/* Title and Filter Button */}
         <div className="flex items-center justify-between mb-4 gap-2">
-          <h1 className="text-3xl sm:text-4xl font-bold">CenterlingGuessr</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold">CenterGuessr</h1>
           <Button
             variant="outline"
             size="icon"
