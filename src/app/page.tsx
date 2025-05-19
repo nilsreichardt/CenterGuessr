@@ -28,7 +28,7 @@ interface ClassFilter {
 
 function LoadingState() {
   return (
-    <div className="max-w-2xl w-full space-y-8">
+    <div className="max-w-xl w-full space-y-8">
       {/* Title and Filter Button */}
       <div className="flex items-center justify-between">
         <h1 className="text-4xl font-bold">CenterGuessr</h1>
@@ -387,7 +387,7 @@ function HomeContent() {
   if (!currentAlumni && !filterLoading) {
     return (
       <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-8">
-        <div className="max-w-2xl w-full space-y-8">
+        <div className="max-w-xl w-full space-y-8">
           {/* Title and Filter Button */}
           <div className="flex items-center justify-between mb-4 gap-2">
             <h1 className="text-3xl sm:text-4xl font-bold">CenterGuessr</h1>
@@ -485,9 +485,9 @@ function HomeContent() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-8">
+    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4">
       <ConfettiEffect active={showConfetti} />
-      <div className="max-w-2xl w-full space-y-8">
+      <div className="max-w-xl w-full space-y-8">
         {/* Title and Filter Button */}
         <div className="flex items-center justify-between mb-4 gap-2">
           <h1 className="text-3xl sm:text-4xl font-bold">CenterGuessr</h1>
@@ -569,10 +569,10 @@ function HomeContent() {
             <CMSImage
               image={currentAlumni?.student.image}
               alt={currentAlumni?.student.person.name}
-              className="w-full aspect-square object-cover relative z-10"
+              className="w-full aspect-square object-cover relative z-10 max-h-[60vh]"
             />
           ) : (
-            <div className="w-full aspect-square bg-gradient-to-r from-[#f9a8d4] to-[#c4b5fd] flex items-center justify-center relative z-10">
+            <div className="w-full aspect-square bg-gradient-to-r from-[#f9a8d4] to-[#c4b5fd] flex items-center justify-center relative z-10 max-h-[60vh]">
               <span className="text-gray-700 font-semibold">
                 No image available
               </span>
