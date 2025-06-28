@@ -36,6 +36,7 @@ const Index = () => {
     setIsCorrect(null);
     setShowConfetti(false);
     setIsAnswerSubmitted(false);
+    setIsLoading(false);
   };
 
   const handleSubmitGuess = (selectedClass: string) => {
@@ -54,6 +55,13 @@ const Index = () => {
   const handleNextAlumnus = () => {
     if (currentIndex < gameAlumni.length - 1) {
       setIsLoading(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => prev + 1);
+        setIsCorrect(null);
+        setShowConfetti(false);
+        setIsAnswerSubmitted(false);
+        setIsLoading(false);
+      }, 500);
     } else {
       // End of game
       startNewGame();
