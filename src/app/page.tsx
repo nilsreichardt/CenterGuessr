@@ -182,13 +182,8 @@ function HomeContent() {
     }
 
     if (!filterParam) {
-      // Default to Munich classes if no filters provided
-      const initialFilters: ClassFilter = {};
-      classes.forEach((cls) => {
-        initialFilters[`${cls.season} ${cls.year}`] =
-          cls.location.city === "Munich";
-      });
-      return initialFilters;
+      // Default to Munich classes from the last five years if no filters provided
+      return getLastFiveYearsFilter(classes);
     }
 
     try {
@@ -203,13 +198,8 @@ function HomeContent() {
       return validFilters;
     } catch (error) {
       console.error("Error parsing filter query parameters:", error);
-      // Fall back to default filters if parsing fails
-      const initialFilters: ClassFilter = {};
-      classes.forEach((cls) => {
-        initialFilters[`${cls.season} ${cls.year}`] =
-          cls.location.city === "Munich";
-      });
-      return initialFilters;
+      // Fall back to last five years if parsing fails
+      return getLastFiveYearsFilter(classes);
     }
   };
 
@@ -232,7 +222,7 @@ function HomeContent() {
         });
         setClasses(sortedClasses);
 
-        // Initialize class filters from query parameters or default to Munich
+        // Initialize class filters from query parameters or default to last five years
         const initialFilters = parseFilterQueryParams(sortedClasses);
         setClassFilters(initialFilters);
       } catch (error) {
