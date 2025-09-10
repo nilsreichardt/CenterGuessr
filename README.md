@@ -1,88 +1,183 @@
-# CenterGuessr
+# CenterGuessr 🎓
 
-How well do you know the CDTM students? A fun game to test your knowledge. Vibe coded this project with [Cursor](https://cursor.com).
+A production-ready guessing game where CDTM alumni test their knowledge of fellow Centerlings! Guess which class your alumni were in and compete on the leaderboard.
 
-## Running the Game Locally
+## ✨ What's New in v2.0
 
-Follow these steps to run the game locally on your machine.
+This version has been completely rebuilt from the ground up with production-ready features:
 
-### 1. Install Node.js
+### 🎮 Two Game Modes
+- **Training Mode**: Practice without pressure, no points earned
+- **Ranked Mode**: Compete for points and climb the leaderboard
+  - +1 point per correct answer
+  - +1 bonus point for every 3 correct answers in a row
+  - Minimum 6 classes required to prevent easy wins
 
-If you don't already have Node.js installed, you'll need to do so. Node.js is a JavaScript runtime that allows you to execute JavaScript code directly on your machine, without the need for a browser. The web server of Next.js, which this game uses, is written in TypeScript, hence the need for Node.js.
+### 🏆 Competitive Features
+- **Real-time Leaderboard**: See how you rank against other CDTM alumni
+- **Points & Streaks**: Track your progress with detailed statistics
+- **Animated Feedback**: Satisfying animations for points and achievements
+- **Server-side Evaluation**: Cheat-proof scoring system
 
-You can download Node.js from the official website: https://nodejs.org/
+### 🔐 Secure Authentication
+- **Google OAuth**: Sign in with your CDTM Google account
+- **Domain Restriction**: Only @cdtm.com email addresses allowed
+- **Profile Management**: Track your stats and achievements
 
-### 2. Clone the Repository
+## 🚀 Quick Start for Development
 
-Clone the game's repository to your local machine. If you're unfamiliar with git or cloning repositories, there are many resources available online to guide you through the process.
+### Prerequisites
+- Node.js 18+
+- Supabase project (free tier works)
+- Google Cloud Console project
+- Access to CDTM Directus CMS
 
-### 3. Obtain an API Key for the CMS
+### 1. Environment Setup
 
-To interact with the game's Content Management System (CMS), you'll need an API key. Here's how to get one:
+Copy the example environment file:
+```bash
+cp .env.example .env.local
+```
+
+Fill in your environment variables:
+```env
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+# Google OAuth Configuration  
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# Directus CMS Configuration
+NEXT_PUBLIC_DIRECTUS_URL=https://cms.cdtm.com
+DIRECTUS_TOKEN=your-directus-token
+```
+
+### 2. Get Directus API Access
 
 1. **Login to the CMS**: Visit https://cms.cdtm.com and log in using your CDTM Google account.
+2. **Access the User Directory**: On the left-hand sidebar, click on User Directory.
+3. **Access the Applications Role**: Click on the `Applications` role.
+4. **Create a New User**: Click the plus icon to create a new user with your name and add a "local" tag.
+5. **Generate an API Key**: Click the plus icon in the Token field to generate your API key.
 
-1. **Access the User Directory**: On the left-hand sidebar, click on User Directory.
+### 3. Database Setup
 
-1. **Access the Applications Role**: Click on the `Applications` role. This role has read-only access to all CMS data. It's the same role that the deployed game uses (the `Game Server` user).
+1. Create a new Supabase project at https://supabase.com
+2. Copy the SQL from `supabase/migrations/001_initial_schema.sql`
+3. Run it in your Supabase SQL editor
 
-1. **Create a New User**: Click on the plus icon in the top-right corner to create a new user. Set your first and last name as the user's first and last name. Add a tag named local to the Tags field.
+### 4. Google OAuth Setup
 
-1. **Generate an API Key**: Click on the plus icon in the Token field, which is located at the bottom of the page. This will generate your API key.
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create OAuth 2.0 credentials
+3. Add authorized redirect URIs:
+   - `http://localhost:3000/auth/callback`
+   - `https://your-supabase-project.supabase.co/auth/v1/callback`
 
-### 4. Create an `.env.local` File
+### 5. Supabase Auth Configuration
 
-Create a new file named `.env.local` at the root of the cloned repository. In this file, add your API key as follows:
+1. In your Supabase project, go to Authentication > Providers
+2. Enable Google provider
+3. Add your Google OAuth credentials
 
-```
-NEXT_PUBLIC_CMS_URL="https://cms.cdtm.com"
-DIRECTUS_API_KEY="your_API_key"
-```
-
-Replace `your_API_key` with the API key you obtained in the previous step.
-
-### 5. Install the dependencies
-
-Run the following command from the root of the repository to install all required dependencies like React and Next.js:
-
-```
-npm install
-```
-
-### 6. Run the Game
-
-In your terminal, navigate to the root directory of the cloned repository and run the following command:
+### 6. Install & Run
 
 ```bash
+npm install
 npm run dev
 ```
 
-This command will start the game's development server.
+Visit `http://localhost:3000` to see the application.
 
-### 7. View the Game
+## 🎯 Game Rules
 
-Finally, open your web browser and visit `localhost:3000` to view the game.
+### Training Mode
+- Practice mode with unlimited attempts
+- No points earned or penalties
+- No minimum class requirement
+- Perfect for learning and improving your alumni knowledge
 
-That's it! You've successfully set up and run the game on your local machine.
+### Ranked Mode
+- Competitive mode affecting your leaderboard position
+- +1 point for each correct answer
+- +1 bonus point for every 3rd consecutive correct answer
+- Minimum 6 classes must be selected to ensure fair difficulty
+- All scoring handled server-side to prevent cheating
 
-# Next steps
+## 🏗️ Architecture
 
-### Update your git email address
+### Frontend
+- **Next.js 14** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Radix UI** for accessible components
 
-Set your CDTM email address as your git commit email address. At the root of the cloned directory run the following with your email address:
+### Backend
+- **Supabase** for database and authentication
+- **Next.js API Routes** for game logic
+- **Directus CMS** for alumni data
+- **PostgreSQL** with Row Level Security
 
+### Security Features
+- Server-side game evaluation
+- Domain-restricted authentication (@cdtm.com only)
+- Row Level Security for data protection
+- CSRF protection
+
+## 📊 Database Schema
+
+The application uses a comprehensive schema for tracking:
+- **User profiles** with stats and rankings
+- **Game sessions** for individual games
+- **Detailed answer tracking** for analytics
+- **Materialized leaderboard view** for performance
+
+All tables include Row Level Security policies to ensure users can only access their own data.
+
+## 🚀 Deployment
+
+### Recommended: Vercel
+1. Connect your GitHub repository to Vercel
+2. Set all environment variables in the Vercel dashboard
+3. Deploy automatically on every push to main
+
+### Environment Variables for Production
+Ensure all variables from `.env.example` are set in your deployment platform.
+
+## 🎯 Future Enhancements
+
+- **Team Competitions**: Class vs class challenges
+- **Achievement System**: Badges and milestones  
+- **Advanced Analytics**: Detailed performance insights
+- **Mobile App**: Native iOS/Android applications
+- **Admin Dashboard**: Content management interface
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes and test thoroughly
+4. Commit with a clear message
+5. Push to your branch and create a Pull Request
+
+### Development Tips
+
+Set your CDTM email for commits:
 ```bash
 git config user.email "first.last@cdtm.com"
 ```
 
-### Install useful Plugins
+Recommended VS Code extensions:
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-If you are using Visual Studio Code as your IDE, following plugins are recommended:
+## 📝 License
 
-#### [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+This project is private and intended for CDTM internal use only.
 
-> Tailwind CSS IntelliSense enhances the Tailwind development experience by providing Visual Studio Code users with advanced features such as autocomplete, syntax highlighting, and linting.
+---
 
-#### [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-> Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+Built with ❤️ by the CDTM community using [Claude Code](https://claude.ai/code)

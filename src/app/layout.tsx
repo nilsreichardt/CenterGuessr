@@ -6,8 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Centerling Guessr",
-  description: "A game to test your knowledge of locations",
+  title: "CenterGuessr",
+  description: "Guess which CDTM class your fellow alumni were in! Compete on the leaderboard and test your memory.",
 };
 
 export default function RootLayout({
